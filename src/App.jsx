@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [word, setWord] = useState("");
+  const key = "p1fkPloDSYpBNNzVeXGT1z6oBb88gZY4o2DVrMDWov0";
 
   function searchImage(e) {
     e.preventDefault();
@@ -10,8 +11,15 @@ function App() {
       alert("กรุณาป้อนข้อมูล");
     } else {
       // เรียกใช้งาน API
-      console.log(word);
+      fetchImageFromAPI(word);
     }
+  }
+
+  async function fetchImageFromAPI() {
+    const url = `https://api.unsplash.com/search/photos?page=1&query=${word}&client_id=${key}&per_page=15`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
   }
 
   return (
