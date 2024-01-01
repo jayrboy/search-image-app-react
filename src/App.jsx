@@ -4,7 +4,6 @@ import Picture from "./components/Picture";
 
 function App() {
   const [word, setWord] = useState("");
-  const key = "p1fkPloDSYpBNNzVeXGT1z6oBb88gZY4o2DVrMDWov0";
   const [photos, setPhotos] = useState([]);
 
   function searchImage(e) {
@@ -13,12 +12,17 @@ function App() {
       alert("กรุณาป้อนข้อมูล");
     } else {
       // เรียกใช้งาน API
-      fetchImageFromAPI(word);
+      fetchImageFromAPI();
+      // console.log(import.meta.env);
     }
   }
 
   async function fetchImageFromAPI() {
-    const url = `https://api.unsplash.com/search/photos?page=1&query=${word}&client_id=${key}&per_page=15`;
+    const url = `${
+      import.meta.env.VITE_API_URL
+    }?page=1&query=${word}&client_id=${
+      import.meta.env.VITE_API_KEY
+    }&per_page=15`;
     const res = await fetch(url);
     const data = await res.json();
     const result = data.results;
