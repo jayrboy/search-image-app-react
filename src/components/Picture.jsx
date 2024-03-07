@@ -1,9 +1,12 @@
 const Picture = (props) => {
   return (
-    <>
-      <img src={props.urls.small} alt={props.description} />
-    </>
-  );
-};
-
-export default Picture;
+    <div className="card">
+      <img
+        src={props.urls.small}
+        alt={props.description}
+        className="img-fluid rounded"
+      />
+    </div>
+  )
+}
+export default Picture
